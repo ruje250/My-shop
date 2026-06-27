@@ -1,21 +1,53 @@
-script.Cssbody {
-  font-family: Arial;
-  text-align: center;
-  background: #f2f2f2;
+script.jslet cart = [];
+let orders = [];
+
+function addToCart(name, price) {
+  cart.push({name, price});
+  updateCart();
 }
 
-button {
-  margin: 5px;
-  padding: 10px;
-  background: green;
-  color: white;
-  border: none;
-  border-radius: 8px;
+function updateCart() {
+  let total = 0;
+  let cartDiv = document.getElementById("cart");
+
+  cartDiv.innerHTML = "";
+
+  cart.forEach(item => {
+    total += item.price;
+    cartDiv.innerHTML += "<p>" + item.name + " - " + item.price + "</p>";
+  });
+
+  document.getElementById("total").innerText = total;
 }
 
-#cart, #orders {
-  background: white;
-  margin: 10px;
-  padding: 10px;
-  border-radius: 10px;
+function pay() {
+  if (cart.length === 0) {
+    document.getElementById("message").innerText = "Cart is empty!";
+    return;
+  }
+
+  let total = 0;
+  let items = "";
+
+  cart.forEach(i => {
+    total += i.price;
+    items += i.name + ", ";
+  });
+
+  orders.push(items + " | " + total);
+
+  cart = [];
+  updateCart();
+  updateOrders();
+
+  document.getElementById("message").innerText = "Payment successful 🎉";
+}
+
+function updateOrders() {
+  let d = document.getElementById("orders");
+  d.innerHTML = "";
+
+  orders.forEach(o => {
+    d.innerHTML += "<p>🛒 " + o + "</p>";
+  });
 }
