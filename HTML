@@ -1,1 +1,35 @@
-index.html
+index.html<!DOCTYPE html>
+<html>
+<head>
+  <title>My Shop</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<h1>🛒 My Shop</h1>
+
+<button onclick="addToCart('Phone',2000)">Phone - 2000</button>
+<button onclick="addToCart('Shoes',500)">Shoes - 500</button>
+<button onclick="addToCart('Watch',300)">Watch - 300</button>
+
+<hr>
+
+<h2>Cart</h2>
+<div id="cart"></div>
+
+<h3>Total: <span id="total">0</span></h3>
+
+<button onclick="pay()">Pay Now</button>
+
+<p id="message"></p>
+
+<hr>
+
+<h2>Owner Dashboard</h2>
+<div id="orders"></div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
